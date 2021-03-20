@@ -1,0 +1,15 @@
+- создать свою базу данных
+use homework-db
+
+- создать коллекцию пользователей
+db.createCollection('users')
+
+- добавить информацию по 2-м людям с полями фамилия, имя и контактная информация (как вложенный объект)
+
+db.users.insert({ name: { firstname: "Isaak", lastname: "Newton"}, contacts:  [ "Britain", "London", "+448008080" ] })
+
+db.users.insert({ name: { firstname: "Albert", lastname: "Einstein"}, contacts: [ "Germany", "Württemberg", "+499009090" ] })
+  
+- вывести количество контактов у каждого пользователя
+
+db.users.aggregate({$project: { contats_count: { $size:"$contacts" }}})
